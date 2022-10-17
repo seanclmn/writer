@@ -1,36 +1,19 @@
-import reactLogo from './assets/react.svg'
-import './App.css'
-import { getFirestore, collection, getDocs, getDoc, doc, CollectionReference } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { useState } from 'react'
+import { useGetUsers } from './hooks/useGetUsers'
+import { QueryClient, QueryClientProvider, useQuery} from '@tanstack/react-query'
+import { Practice } from './components/Practice'
 
-import { db} from './firebase'
+const App = () => {
 
-export type User = {
-  username: string
-}
-
-const getUsers = async () =>{
-  const queryRef = collection(db, 'users') as CollectionReference<User>;
-  const query = await getDocs(queryRef)
-  return query.docs.map((doc)=>doc.data())
-}
-
-function App() {
-
-  const [users,setUsers]=useState([{}])
-
-  useEffect(()=>{
-  //  setUsers( getUsers())
-   getUsers().then((data)=>setUsers(data))
-  //  setUsers(getUsers.then((data)=>console.log(data)))
-  },[])
-
-  if(users.length===0) return null
+  const queryClient = new QueryClient()
+  
   return (
-    <div className="App">
-      {users.map((data)=>JSON.stringify(data))}
-    </div>
+    <QueryClientProvider client={queryClient}>
+
+      <Practice/>
+    </QueryClientProvider>
   )
 }
+
 
 export default App
