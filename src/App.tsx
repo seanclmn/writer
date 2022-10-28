@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { useGetUsers } from './hooks/useGetUsers'
-import { QueryClient, QueryClientProvider, useQuery} from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider} from '@tanstack/react-query'
+import { Provider } from 'react-redux'
+
 import { Practice } from './components/Practice'
 
 const App = () => {
@@ -9,11 +9,9 @@ const App = () => {
   
   return (
     <QueryClientProvider client={queryClient}>
-
       <Practice/>
     </QueryClientProvider>
   )
 }
-
 
 export default App

@@ -1,7 +1,5 @@
-import {useState,useEffect} from 'react'
-import { collection, getDocs, getDoc, doc, CollectionReference } from 'firebase/firestore';
-
-import { db } from '../firebase'
+import { collection, getDocs, CollectionReference } from 'firebase/firestore';
+import { db } from '../../Firebase'
 import { useQuery } from '@tanstack/react-query';
 
 export type User = {
