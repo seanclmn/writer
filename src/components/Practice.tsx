@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import { useGetUsers } from "../hooks/data/useGetUsers"
-import PrivateRoute from "../routing/Privateroute"
+import {PrivateRoute} from "../routing/Privateroute"
 import { useStore, initUser } from "../store/store"
 
 export const Practice = () => {

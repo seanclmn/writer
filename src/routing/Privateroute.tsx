@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { Fragment, ReactNode } from "react"
 import { Navigate } from "react-router-dom"
 import { useStore } from "../store/store"
 
@@ -6,13 +6,12 @@ type childrenProps = {
   children: ReactNode
 }
 
-const PrivateRouteComponent = ({children}: childrenProps) => {
+export const PrivateRoute = ({children}: childrenProps) => {
   const currentUser = useStore(state => state.currentUser)
-  return currentUser.id.length > 0 ? children: (<Navigate to={"/signin"} />)
+  return(currentUser.id.length > 0 ? <Fragment>{children}</Fragment>: (<Navigate to={"/"} />))
 }
 
-const PrivateRoute = ({children}:childrenProps) => {
-  <Route path="/" element=
-}
+// const PrivateRoute = ({children}:childrenProps) => {
+//   <Route path="/" element=
+// }
 
-export default PrivateRoute
