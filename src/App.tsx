@@ -7,12 +7,13 @@ import { Practice } from './components/Practice'
 const App = () => {
 
   const queryClient = new QueryClient()
+
   
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<p>stuff</p>}/>
+          <Route path="/" element={<Practice/>}/>
           <Route path="/private" element={<PrivateRoute><p>stuff</p></PrivateRoute> } />
         </Routes>
       </BrowserRouter>
