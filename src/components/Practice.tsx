@@ -2,9 +2,10 @@ import { Route, Routes } from "react-router-dom"
 import { useGetUsers } from "../hooks/data/useGetUsers"
 import { useGetCurrentUser } from "../hooks/auth/useGetCurrentUser"
 import {PrivateRoute} from "../routing/Privateroute"
-import { useStore, initUser, User, AppState} from "../store/store"
+import { useStore, initUser, AppState} from "../store/store"
+import {User} from '../types/AuthTypes'
 import { useEffect } from "react"
-import { SignInPage } from "../pages/SignInPage"
+import { SignInSignUpPage } from "../pages/SignInSignUp"
 
 export const Practice = () => {
   // const {isLoading,error,data:users}=useGetUsers()
@@ -13,7 +14,7 @@ export const Practice = () => {
 	// setCurrentUser()
 
 	const exampleUser = {
-		username: "sean",
+		email: "sean",
 		id: "123456789"
 	}
 
@@ -21,9 +22,9 @@ export const Practice = () => {
 
 	return(
 		<>
-			{/* <p>{currentUser?.username}</p>
+			{/* <p>{currentUser?.email}</p>
 			<button onClick={()=>setCurrentUser(exampleUser)}>newuser</button> */}
-			<SignInPage/>
+			<SignInSignUpPage/>
 		</>
   )
 }

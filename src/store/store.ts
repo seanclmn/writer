@@ -1,11 +1,9 @@
 import create from 'zustand'
+import {User} from '../types/AuthTypes'
 
-export interface User {
-  username: string
-  id: string
-}
+
 export const initUser = {
-  username: "",
+  email: "",
   id: ""
 }
 

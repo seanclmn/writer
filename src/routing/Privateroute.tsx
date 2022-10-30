@@ -8,6 +8,7 @@ type childrenProps = {
 
 export const PrivateRoute = ({children}: childrenProps) => {
   const currentUser = useStore(state => state.currentUser)
-  return(currentUser.username.length > 0 ? <Fragment>{children}</Fragment>: (<Navigate to={"/signin"} />))
+  console.log(currentUser)
+  return(currentUser.email.length > 0 ? <Fragment>{children}</Fragment>: (<Navigate to={"/signin"} />))
 }
 

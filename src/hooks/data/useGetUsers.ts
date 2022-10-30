@@ -3,7 +3,7 @@ import { db } from '../../Firebase'
 import { useQuery } from '@tanstack/react-query';
 
 export type User = {
-  username: string
+  email: string
 }
 
 export const useGetUsers = () => {
