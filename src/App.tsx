@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import {PrivateRoute} from '../src/routing/Privateroute'
 import { Practice } from './components/Practice'
+import { SignInPage } from './pages/SignInPage'
 
 const App = () => {
 
@@ -13,8 +14,8 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Practice/>}/>
-          <Route path="/private" element={<PrivateRoute><p>stuff</p></PrivateRoute> } />
+          <Route path="/signin" element={<SignInPage/>}/>
+          <Route path="/" element={<PrivateRoute><p>stuff</p></PrivateRoute> } />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
