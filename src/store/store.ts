@@ -9,17 +9,23 @@ export const initUser = {
 
 export interface AppState {
   currentUser: User
-  loggedIn: boolean
+  loggedIn: boolean | null
   setCurrentUser: (user: User) => void;
+  setLoggedIn: (bool: boolean) => void;
 }
 
 export const useStore = create<AppState>((set)=> ({
   currentUser: initUser,
-  loggedIn: false,
+  loggedIn: null,
   setCurrentUser: (newUser) => {
     set(({
       currentUser: newUser, 
       }
       ))
+  },
+  setLoggedIn: (bool) => {
+    set(({
+      loggedIn: bool
+    }))
   }
 }))

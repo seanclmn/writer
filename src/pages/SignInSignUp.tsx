@@ -1,23 +1,32 @@
-import { FirebaseError } from "firebase/app"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import { MouseEvent, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { auth } from "../Firebase"
 import { useStore } from "../store/store"
 import { Credentials } from "../types/AuthTypes"
+
+
+// UI Components
+import { 
+  Button, 
+  Input,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+} from '@chakra-ui/react'
+
 
 export const SignInSignUpPage = () => {
   const [creds,setCreds]=useState({email: "", password: ""})
   const currentEmail = creds.email
   const currentPassword = creds.password
+  const loggedIn = useStore((state)=>state.loggedIn)
   const setEmail = (target: HTMLInputElement) => setCreds({email: target.value, password: currentPassword })
   const setPassword = (target: HTMLInputElement) => setCreds({email: currentEmail, password: target.value })
 
   const onSignInPage = window.location.href.includes('signin')
   const onSignUpPage = window.location.href.includes('signup')
-
-  const currentUser = useStore((state)=>state.currentUser)
-	const setCurrentUser: any= useStore((state)=>state.setCurrentUser)
 
   const signInUser = (e: MouseEvent) => {
     e.preventDefault()
@@ -36,22 +45,22 @@ export const SignInSignUpPage = () => {
     )
   }
 
+  if(loggedIn) return <Navigate to="/" />
+
   return(
     <>
-      <form 
-        action=""
-        style={{'display':'flex', 'flexDirection': 'column', 'alignItems': 'center'}}
+      <FormControl 
+        // style={{'display':'flex', 'flexDirection': 'column', 'width': '200px'}}
         >
-        <label htmlFor="">email</label>
-        <input type="text" id="email" onChange={(e)=>setEmail(e.target)}/>
-        <label htmlFor="">password</label>
-        <input type="text" id="password" onChange={(e)=>setPassword(e.target)}/>
+        
+        <FormLabel>email</FormLabel>
+        <Input type="email" id="email" onChange={(e)=>setEmail(e.target)}/>
+        <FormLabel>password</FormLabel>
+        <Input type="text" id="password" onChange={(e)=>setPassword(e.target)}/>
   
-        {onSignInPage && <button onClick={(e)=>signInUser(e)}>Sign in</button>}
-        {onSignUpPage && <button onClick={(e)=>signUpUser(e)}>Sign up</button>}
-      </form>
-  
-      <Link to="/"><button>link</button></Link>
+        {onSignInPage && <Button onClick={(e)=>signInUser(e)}>Sign in</Button>}
+        {onSignUpPage && <Button onClick={(e)=>signUpUser(e)}>Sign up</Button>}
+      </FormControl>
     </>
   )
 }
