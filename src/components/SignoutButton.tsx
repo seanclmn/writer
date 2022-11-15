@@ -1,24 +1,19 @@
-import { getAuth, signOut } from "firebase/auth";
 import { Button } from "@chakra-ui/react";
-
-const auth = getAuth();
-
-const signOutUser = () => {
-  signOut(auth).then((data) => {
-    console.log(data)
-  }).catch((error) => {
-    console.log(error)
-  });
-}
+import { Outlet } from "react-router";
+import { useSignOutUser } from "../hooks/auth/AuthHooks";
+import { useGetBlogs, } from "../hooks/get/ReadUserDataHooks";
 
 export const SignoutButton = () => {
-  
+
+  console.log(useGetBlogs())
 
   return(
-    <Button
-      onClick={signOutUser}
-      >
-      sign out
-    </Button>
+    <>
+      <Button onClick={useSignOutUser}>
+        Sign out
+      </Button>
+      
+      <Outlet/>
+    </>
   )
 }

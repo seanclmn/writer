@@ -1,10 +1,9 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import { MouseEvent, useState } from "react"
-import { Link, Navigate } from "react-router-dom"
-import { auth } from "../Firebase"
+import { Navigate } from "react-router-dom"
 import { useStore } from "../store/store"
-import { Credentials } from "../types/AuthTypes"
 
+// hooks
+import { useSignInUser, useSignUpUser } from "../hooks/auth/AuthHooks"
 
 // UI Components
 import { 
@@ -15,52 +14,57 @@ import {
   FormErrorMessage,
   FormHelperText,
 } from '@chakra-ui/react'
-
+import { useGetUsers } from "../hooks/get/ReadUserDataHooks"
 
 export const SignInSignUpPage = () => {
   const [creds,setCreds]=useState({email: "", password: ""})
-  const currentEmail = creds.email
-  const currentPassword = creds.password
+  const {email: currentEmail, password: currentPassword} = creds
   const loggedIn = useStore((state)=>state.loggedIn)
-  const setEmail = (target: HTMLInputElement) => setCreds({email: target.value, password: currentPassword })
-  const setPassword = (target: HTMLInputElement) => setCreds({email: currentEmail, password: target.value })
 
-  const onSignInPage = window.location.href.includes('signin')
-  const onSignUpPage = window.location.href.includes('signup')
+  const setEmail = (target: HTMLInputElement) => setCreds({email: target.value, password: currentPassword })
+  
+  const setPassword = (target: HTMLInputElement) => setCreds({email: currentEmail, password: target.value })
 
   const signInUser = (e: MouseEvent) => {
     e.preventDefault()
-    const credentials: Credentials = creds
-    signInWithEmailAndPassword(auth,credentials.email, credentials.password).then((creds)=>{
-      console.log("User signed in!",creds)
-    })
+    useSignInUser(creds)
   }
 
   const signUpUser = (e: MouseEvent) => {
     e.preventDefault()
-    const credentials: Credentials = creds
-    createUserWithEmailAndPassword(auth,credentials.email, credentials.password).then((creds)=>{
-      console.log("New user created!",creds)
-      }
-    )
+    useSignUpUser(creds)
   }
 
   if(loggedIn) return <Navigate to="/" />
 
+  console.log(useGetUsers())
+
   return(
-    <>
       <FormControl 
-        // style={{'display':'flex', 'flexDirection': 'column', 'width': '200px'}}
+        style={{'display':'flex', 'flexDirection': 'column', 'alignItems': 'center'}}
         >
         
         <FormLabel>email</FormLabel>
-        <Input type="email" id="email" onChange={(e)=>setEmail(e.target)}/>
+        <Input 
+          style={{'width':'250px'}}
+          type="email" 
+          id="email" 
+          onChange={(e)=>setEmail(e.target)}
+          />
+        <FormErrorMessage>Email is required</FormErrorMessage>
+
         <FormLabel>password</FormLabel>
-        <Input type="text" id="password" onChange={(e)=>setPassword(e.target)}/>
+        <Input 
+          style={{'width':'250px'}}
+          type="text" 
+          id="password" 
+          onChange={(e)=>setPassword(e.target)}
+          />
+        {/* <FormErrorMessage>Password is required</FormErrorMessage> */}
+
   
-        {onSignInPage && <Button onClick={(e)=>signInUser(e)}>Sign in</Button>}
-        {onSignUpPage && <Button onClick={(e)=>signUpUser(e)}>Sign up</Button>}
+        {window.location.href.includes('signin') && <Button onClick={(e)=>signInUser(e)}>Sign in</Button>}
+        { window.location.href.includes('signup') && <Button onClick={(e)=>signUpUser(e)}>Sign up</Button>}
       </FormControl>
-    </>
   )
 }

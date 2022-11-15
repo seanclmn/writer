@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
-import { useGetUsers } from "../hooks/data/useGetUsers"
-import { useGetCurrentUser } from "../hooks/auth/useGetCurrentUser"
+import { useGetUsers } from "../hooks/get/ReadUserDataHooks"
+import { useGetCurrentUser } from "../hooks/auth/AuthHooks"
 import {PrivateRoute} from "../routing/Privateroute"
 import { useStore, initUser, AppState} from "../store/store"
 import {User} from '../types/AuthTypes'

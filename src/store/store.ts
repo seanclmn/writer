@@ -1,7 +1,6 @@
 import create from 'zustand'
 import {User} from '../types/AuthTypes'
 
-
 export const initUser = {
   email: "",
   id: ""
