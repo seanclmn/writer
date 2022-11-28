@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 import {PrivateRoute} from '../src/routing/Privateroute'
 import { SignInSignUpPage } from './pages/SignInSignUp'
 import { auth } from './Firebase'
@@ -7,7 +7,9 @@ import { useEffect, useState } from 'react'
 import { useStore } from './store/store'
 import { SignoutButton } from './components/SignoutButton'
 import { EditorPage } from './pages/EditorPage'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { MyBlogs } from './pages/MyBlogs'
+import { useGetBlogs } from './hooks/get/ReadUserDataHooks'
+import { QueryClient,QueryClientProvider} from '@tanstack/react-query'
 
 const App = () => {
   const queryClient = new QueryClient()
@@ -30,7 +32,7 @@ const App = () => {
   },[])
 
   if(loading) {
-    return(<div>loading...</div>)
+    return(<p>loading...</p>)
   }
   
   return (
@@ -41,7 +43,9 @@ const App = () => {
             <Route path="/signin" element={<SignInSignUpPage/>}/>
             <Route path="/signup" element={<SignInSignUpPage/>}/>
             <Route path="/" element={<PrivateRoute><SignoutButton/></PrivateRoute> }>
-              <Route path="editor" element={<EditorPage/>}/>
+              <Route path="/" element={<p><Link to="/editor">test</Link></p>}/>
+              <Route path="/editor" element={<EditorPage/>}/>
+              <Route path="/myblogs" element={<MyBlogs/>}/>									
             </Route>
           </Routes>
         </BrowserRouter>

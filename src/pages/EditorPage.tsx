@@ -3,11 +3,11 @@ import Texteditor from "../components/Texteditor"
 import { useGetBlogs } from "../hooks/get/ReadUserDataHooks"
 
 export const EditorPage = () => {
-  const [value,setValue]=useState("")
+  const [value]=useState("")
   return(
-    <div>
+    <>
       <p>editor page</p>
-      <Texteditor value={value} defaultValue=""/>
-    </div>  
+      <Texteditor value={"test"} defaultValue=""/>
+    </>  
   )
 }

@@ -37,8 +37,6 @@ export const SignInSignUpPage = () => {
 
   if(loggedIn) return <Navigate to="/" />
 
-  console.log(useGetUsers())
-
   return(
       <FormControl 
         style={{'display':'flex', 'flexDirection': 'column', 'alignItems': 'center'}}

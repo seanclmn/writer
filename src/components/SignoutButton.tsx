@@ -5,8 +5,6 @@ import { useGetBlogs, } from "../hooks/get/ReadUserDataHooks";
 
 export const SignoutButton = () => {
 
-  console.log(useGetBlogs())
-
   return(
     <>
       <Button onClick={useSignOutUser}>
