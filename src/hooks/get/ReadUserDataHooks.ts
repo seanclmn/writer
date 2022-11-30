@@ -17,7 +17,7 @@ export const useGetUsers = () => {
     return query
   }
 
-  const {isLoading,error,data}=useQuery(['users'],async ()=>{
+  const {isLoading,error,data}=useQuery(['users'], async ()=>{
     const result = await fetchUsers()
     return result
   })
@@ -35,7 +35,7 @@ export const useGetBlogs = (user:User) => {
     return query
   }
 
-  const {isLoading,error,data}=useQuery(['blogs'],async ()=>{
+  const {isLoading,error,data}=useQuery(['blogs'], async ()=>{
     const result = await fetchBlogs()
     return result
   })

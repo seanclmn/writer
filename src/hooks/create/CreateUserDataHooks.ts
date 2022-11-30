@@ -2,7 +2,7 @@ import { collection, getDocs, CollectionReference, doc, getDoc, onSnapshot } fro
 import { db } from '../../Firebase'
 import { useQuery } from '@tanstack/react-query';
 import { useStore } from '../../store/store';
-import { Blog } from '../../types/BlogTypes';
+import { BlogModel } from '../../types/BlogTypes';
 
 
 // export const useCreateBlogs = () => {
@@ -11,7 +11,7 @@ import { Blog } from '../../types/BlogTypes';
 //   console.log(currentUser)
 
 //   const fetchBlogs = async () =>{
-//     const blogRef = collection(db, `users/${currentUser.id}/blogs`) as CollectionReference<Blog>
+//     const blogRef = collection(db, `users/${currentUser.id}/blogs`) as CollectionReference<BlogModel>
 //     const query =( await getDocs(blogRef)).docs.map((doc)=>doc.data())
 //     return query
 //   }
@@ -23,3 +23,19 @@ import { Blog } from '../../types/BlogTypes';
 
 //   return {isLoading,error,data}
 // }
+
+
+export const useCreateBlog = () => {
+  const currentUser = useStore((state)=>state.currentUser)
+
+  const createBlog = () => {
+    
+  }
+
+  const {isLoading,error,data}=useQuery(['newblog'],async ()=>{
+    const result = await createBlog()
+    return result 
+  })
+
+  return {isLoading,error,data}
+}
