@@ -2,24 +2,11 @@ import { SignoutButton } from "../components/SignoutButton"
 import "./ContainerStyles.css"
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {Box} from "@chakra-ui/react"
-
-export const AppContainer = () => {
-
-  return(
-    <div>
+import {Header} from '../components/Header'
+import { Outlet } from "react-router-dom";
+export const AppContainer = () => (
+    <>
       <Header/>
-    </div>
+      <Outlet/>
+    </>
   )
-}
-
-const Header = () => {
-  return(
-    <Box className="app-container-header">
-      <Box>
-        <SignoutButton/>
-        <FontAwesomeIcon icon={faUser}/> 
-      </Box>
-    </Box>
-  )
-}
