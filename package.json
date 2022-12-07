@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.19.1",
-    "@chakra-ui/react": "^2.3.7",
+    "@chakra-ui/react": "^2.4.3",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",

@@ -1,3 +1,7 @@
+.app-container {
+  padding-top: 50px;
+}
+
 .app-container-header {
   position: fixed;
   width: 100%;
@@ -8,6 +12,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: right;
+  z-index: 1;
+  background-color: white;
 }
 
 .app-header-menu {
