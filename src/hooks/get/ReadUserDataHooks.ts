@@ -1,4 +1,4 @@
-import { collection, getDocs, CollectionReference, doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { collection, getDocs, CollectionReference, doc, getDoc, onSnapshot, where, query } from 'firebase/firestore';
 import { db } from '../../Firebase'
 import { useQuery } from '@tanstack/react-query';
 import { useStore } from '../../store/store';
@@ -25,17 +25,16 @@ export const useGetUsers = () => {
   return {isLoading,error,data}
 }
 
-export const useGetBlogs = (user:User) => {
+export const useGetUserBlogs = (user:User) => {
 
   const fetchBlogs = async () =>{
-    console.log(user)
-    console.log(`users/${user.id}/blogs`)
-    const blogRef = collection(db, `users/${user.id}/blogs`) as CollectionReference<BlogModel>
-    const query =( await getDocs(blogRef)).docs.map((doc)=>doc.data())
-    return query
+    const blogsRef = collection(db,'blogs')
+    const q = query(blogsRef, where("userid", "==", user.id));
+    const queryresult =( await getDocs(q)).docs.map((doc)=>doc.data())
+    return queryresult
   }
 
-  const {isLoading,error,data}=useQuery(['blogs'], async ()=>{
+  const {isLoading,error,data}=useQuery(['userblogs'], async ()=>{
     const result = await fetchBlogs()
     return result
   })

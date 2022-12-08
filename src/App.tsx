@@ -1,5 +1,5 @@
-import { ChakraProvider } from '@chakra-ui/react'
-import { BrowserRouter, Route, Routes} from 'react-router-dom'
+import { ChakraProvider, ColorModeScript, theme } from '@chakra-ui/react'
+import { BrowserRouter, Route, Routes, Outlet} from 'react-router-dom'
 import {PrivateRoute} from '../src/routing/Privateroute'
 import { SignInSignUpPage } from './pages/SignInSignUp'
 import { auth } from './Firebase'
@@ -9,6 +9,7 @@ import { EditorPage } from './pages/EditorPage'
 import { MyBlogs } from './pages/MyBlogs'
 import { QueryClient,QueryClientProvider} from '@tanstack/react-query'
 import { AppContainer } from './pages/AppContainer'
+import {Blogpost} from './pages/Blogpost'
 
 const App = () => {
   const queryClient = new QueryClient()
@@ -32,10 +33,10 @@ const App = () => {
   if(loading) {
     return(<p>loading...</p>)
   }
-  
+
   return (
     <QueryClientProvider client={queryClient} contextSharing={true}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <BrowserRouter>
           <Routes>
             <Route path="/signin" element={<SignInSignUpPage/>}/>
@@ -43,7 +44,10 @@ const App = () => {
             <Route path="/" element={<PrivateRoute><AppContainer/></PrivateRoute> }>
               <Route path="/editor" element={<EditorPage/>}/>
               <Route path="/myblogs" element={<MyBlogs/>}/>
-            </Route>
+							<Route path="/b" element={<div><Outlet/></div>}>
+								<Route path=":blogid" element={<Blogpost/>}/>
+            	</Route>
+						</Route>
           </Routes>
         </BrowserRouter>
       </ChakraProvider>

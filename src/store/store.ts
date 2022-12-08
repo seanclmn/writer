@@ -4,7 +4,8 @@ import { BlogModel } from '../types/BlogTypes'
 
 export const initUser = {
   email: "",
-  id: ""
+  id: "",
+  blogs: []
 }
 
 export interface AppState {
@@ -22,7 +23,7 @@ export const useStore = create<AppState>((set)=> ({
   myBlogs: null,
   setCurrentUser: (newUser) => {
     set(({
-      currentUser: newUser, 
+      currentUser: newUser,
       }
       ))
   },
