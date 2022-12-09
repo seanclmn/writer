@@ -43,10 +43,8 @@ const App = () => {
             <Route path="/signup" element={<SignInSignUpPage/>}/>
             <Route path="/" element={<PrivateRoute><AppContainer/></PrivateRoute> }>
               <Route path="/editor" element={<EditorPage/>}/>
-              <Route path="/myblogs" element={<MyBlogs/>}/>
-							<Route path="/b" element={<div><Outlet/></div>}>
-								<Route path=":blogid" element={<Blogpost/>}/>
-            	</Route>
+              <Route path="u/:userid" element={<MyBlogs/>}/>
+							<Route path="b/:blogpostid" element={<Blogpost/>}/>
 						</Route>
           </Routes>
         </BrowserRouter>

@@ -1,4 +1,5 @@
 import { Box, IconButton, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react"
+import {useStore} from '../store/store'
 import { faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
@@ -9,18 +10,20 @@ interface MenuLinkProps {
 }
 
 export const Header = () => {
+	const currentUser = useStore((state)=>state.currentUser)
+
   return(
     <Box className="app-container-header">
       <Menu>
-        <MenuButton 
-          as={IconButton} 
-          icon={<UserMenu/>} 
+        <MenuButton
+          as={IconButton}
+          icon={<UserMenu/>}
           variant="unstyled"
-          rightIcon={<></>}>  
+          rightIcon={<></>}>
         </MenuButton>
         <MenuList>
           <MenuItem>My Profile</MenuItem>
-					<MenuLink path={"/myblogs"} title="My Blogs"/>
+					<MenuLink path={`/u/${currentUser.id}`} title="My Blogs"/>
 					<MenuItem>Log Out</MenuItem>
 				</MenuList>
       </Menu>

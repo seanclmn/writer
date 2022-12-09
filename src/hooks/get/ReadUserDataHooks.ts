@@ -40,3 +40,17 @@ export const useGetUserBlogs = (user:User) => {
   })
   return {isLoading,error,data}
 }
+
+export const useGetUserBlogsById = (userid:string) => {
+  const fetchBlogs = async () => {
+    const blogsRef = collection(db,'blogs')
+    const q = query(blogsRef, where("userid", "==", userid));
+    const queryresult =( await getDocs(q)).docs.map((doc)=>doc.data())
+    return queryresult
+  }
+  const {isLoading,error,data}=useQuery(['userblogs'], async ()=>{
+    const result = await fetchBlogs()
+    return result
+  })
+  return {isLoading,error,data}
+}
