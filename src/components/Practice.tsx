@@ -1,10 +1,4 @@
-import { Route, Routes } from "react-router-dom"
-import { useGetUsers } from "../hooks/get/ReadUserDataHooks"
-import { useGetCurrentUser } from "../hooks/auth/AuthHooks"
-import {PrivateRoute} from "../routing/Privateroute"
-import { useStore, initUser, AppState} from "../store/store"
-import {User} from '../types/AuthTypes'
-import { useEffect } from "react"
+import { useStore } from "../store/store"
 import { SignInSignUpPage } from "../pages/SignInSignUp"
 
 export const Practice = () => {

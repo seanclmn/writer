@@ -21,7 +21,7 @@ export const MyBlogs = () => {
 			my={4}
 			>
 			{currentUserBlogs?.map(blog=>(
-				<Box>
+				<Box key={blog.id}>
 					<Blog
 						{...blog}
 					/>

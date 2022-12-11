@@ -42,7 +42,7 @@ const App = () => {
             <Route path="/signin" element={<SignInSignUpPage/>}/>
             <Route path="/signup" element={<SignInSignUpPage/>}/>
             <Route path="/" element={<PrivateRoute><AppContainer/></PrivateRoute> }>
-              <Route path="/editor" element={<EditorPage/>}/>
+              <Route path="/editor/:editblogid" element={<EditorPage/>}/>
               <Route path="u/:userid" element={<MyBlogs/>}/>
 							<Route path="b/:blogpostid" element={<Blogpost/>}/>
 						</Route>
