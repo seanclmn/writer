@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom"
 import { useStore } from "../store/store"
 
 // hooks
-import { useSignInUser, useSignUpUser } from "../hooks/auth/AuthHooks"
+import { signInUser, useSignUpUser } from "../hooks/auth/AuthHooks"
 
 // UI Components
 import { 
@@ -12,7 +12,6 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  FormHelperText,
 } from '@chakra-ui/react'
 import { useGetUsers } from "../hooks/get/ReadUserDataHooks"
 
@@ -25,9 +24,9 @@ export const SignInSignUpPage = () => {
   
   const setPassword = (target: HTMLInputElement) => setCreds({email: currentEmail, password: target.value })
 
-  const signInUser = (e: MouseEvent) => {
+  const logIn = (e: MouseEvent) => {
     e.preventDefault()
-    useSignInUser(creds)
+    signInUser(creds)
   }
 
   const signUpUser = (e: MouseEvent) => {
@@ -38,31 +37,30 @@ export const SignInSignUpPage = () => {
   if(loggedIn) return <Navigate to="/" />
 
   return(
-      <FormControl 
-        style={{'display':'flex', 'flexDirection': 'column', 'alignItems': 'center'}}
-        >
-        
-        <FormLabel>email</FormLabel>
-        <Input 
-          style={{'width':'250px'}}
-          type="email" 
-          id="email" 
-          onChange={(e)=>setEmail(e.target)}
-          />
-        <FormErrorMessage>Email is required</FormErrorMessage>
+    <FormControl 
+      style={{'display':'flex', 'flexDirection': 'column', 'alignItems': 'center'}}
+      >
+      
+      <FormLabel>email</FormLabel>
+      <Input 
+        style={{'width':'250px'}}
+        type="email" 
+        id="email" 
+        onChange={(e)=>setEmail(e.target)}
+        />
+      <FormErrorMessage>Email is required</FormErrorMessage>
 
-        <FormLabel>password</FormLabel>
-        <Input 
-          style={{'width':'250px'}}
-          type="text" 
-          id="password" 
-          onChange={(e)=>setPassword(e.target)}
-          />
-        {/* <FormErrorMessage>Password is required</FormErrorMessage> */}
+      <FormLabel>password</FormLabel>
+      <Input 
+        style={{'width':'250px'}}
+        type="text" 
+        id="password" 
+        onChange={(e)=>setPassword(e.target)}
+        />
+      {/* <FormErrorMessage>Password is required</FormErrorMessage> */}
 
-  
-        {window.location.href.includes('signin') && <Button onClick={(e)=>signInUser(e)}>Sign in</Button>}
-        { window.location.href.includes('signup') && <Button onClick={(e)=>signUpUser(e)}>Sign up</Button>}
-      </FormControl>
+      { window.location.href.includes('signin') && <Button onClick={(e)=>logIn(e)}>Sign in</Button>}
+      { window.location.href.includes('signup') && <Button onClick={(e)=>signUpUser(e)}>Sign up</Button>}
+    </FormControl>
   )
 }

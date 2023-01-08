@@ -4,6 +4,7 @@ import { faUser,faPlusCircle } from "@fortawesome/free-solid-svg-icons"
 import { faPlusSquare } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
+import { useSignOutUser } from "../hooks/auth/AuthHooks"
 
 interface MenuLinkProps {
 	title: string
@@ -28,7 +29,7 @@ export const Header = () => {
         <MenuList>
           <MenuItem>My Profile</MenuItem>
 					<MenuLink path={`/u/${currentUser.id}`} title="My Blogs"/>
-					<MenuItem>Log Out</MenuItem>
+					<MenuItem onClick={useSignOutUser}>Log Out</MenuItem>
 				</MenuList>
       </Menu>
     </Box>

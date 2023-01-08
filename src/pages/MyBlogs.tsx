@@ -1,7 +1,6 @@
 import {Blog} from '../components/Blog'
 import { useGetUserBlogs, useGetUserBlogsById } from '../hooks/get/ReadUserDataHooks'
 import {useParams} from 'react-router-dom'
-import { useStore } from '../store/store'
 import { Box, SimpleGrid } from '@chakra-ui/react'
 
 

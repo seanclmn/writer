@@ -1,41 +1,23 @@
-import { collection, getDocs, CollectionReference, doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { collection, getDocs, CollectionReference, doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
 import { db } from '../../Firebase'
-import { useQuery } from '@tanstack/react-query';
+import { useQuery,useMutation } from '@tanstack/react-query';
 import { useStore } from '../../store/store';
 import { BlogModel } from '../../types/BlogTypes';
+import {v4 as uuidv4} from 'uuid'
 
+export const useCreateUpdateBlog = () => {
 
-// export const useCreateBlogs = () => {
-//   const currentUser = useStore((state)=>state.currentUser)
+  const createBlog = async (newBlog:BlogModel) => {
+    const body = {...newBlog,id:uuidv4()}
+    await setDoc(doc(db,"blogs",newBlog.id),body)
+  } 
 
-//   console.log(currentUser)
-
-//   const fetchBlogs = async () =>{
-//     const blogRef = collection(db, `users/${currentUser.id}/blogs`) as CollectionReference<BlogModel>
-//     const query =( await getDocs(blogRef)).docs.map((doc)=>doc.data())
-//     return query
-//   }
-
-//   const {isLoading,error,data}=useQuery(['blogs'],async ()=>{
-//     const result = await fetchBlogs()
-//     return result
-//   })
-
-//   return {isLoading,error,data}
-// }
-
-
-export const useCreateBlog = () => {
-  const currentUser = useStore((state)=>state.currentUser)
-
-  const createBlog = () => {
-    
-  }
-
-  const {isLoading,error,data}=useQuery(['newblog'],async ()=>{
-    const result = await createBlog()
-    return result 
+  const {mutate, error, isLoading, data } = useMutation(async (blog:BlogModel) => {
+    const result = await createBlog(blog)
+    return result
   })
 
-  return {isLoading,error,data}
+  const currentUser = useStore((state)=>state.currentUser)
+
+  return {mutate,isLoading,error,data}
 }

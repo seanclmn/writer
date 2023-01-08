@@ -5,5 +5,6 @@ export interface BlogModel {
   image: string
   id: string
   text: string
+  userid: string
 }
 

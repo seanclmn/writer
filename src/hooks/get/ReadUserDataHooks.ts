@@ -20,7 +20,9 @@ export const useGetUsers = () => {
   const {isLoading,error,data}=useQuery(['users'], async ()=>{
     const result = await fetchUsers()
     return result
-  })
+  },
+	{staleTime: Infinity}
+	)
 
   return {isLoading,error,data}
 }
@@ -31,13 +33,15 @@ export const useGetUserBlogs = (user:User) => {
     const blogsRef = collection(db,'blogs')
     const q = query(blogsRef, where("userid", "==", user.id));
     const queryresult =( await getDocs(q)).docs.map((doc)=>doc.data())
-    return queryresult
+    return queryresult as BlogModel[]
   }
 
   const {isLoading,error,data}=useQuery(['userblogs'], async ()=>{
     const result = await fetchBlogs()
     return result
-  })
+  },
+	{staleTime: Infinity}
+	)
   return {isLoading,error,data}
 }
 
@@ -46,11 +50,13 @@ export const useGetUserBlogsById = (userid:string) => {
     const blogsRef = collection(db,'blogs')
     const q = query(blogsRef, where("userid", "==", userid));
     const queryresult =( await getDocs(q)).docs.map((doc)=>doc.data())
-    return queryresult
+    return queryresult as BlogModel[]
   }
   const {isLoading,error,data}=useQuery(['userblogs'], async ()=>{
     const result = await fetchBlogs()
     return result
-  })
+  },
+	{staleTime: Infinity}
+	)
   return {isLoading,error,data}
 }

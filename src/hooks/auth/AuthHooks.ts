@@ -17,7 +17,7 @@ export const useGetCurrentUser = () => {
 }
 
 // SIGNIN USER
-export const useSignInUser = (creds: Credentials) => {
+export const signInUser = (creds: Credentials) => {
   signInWithEmailAndPassword(auth,creds.email, creds.password).then((creds)=>{
     console.log("User signed in!",creds)
   })
