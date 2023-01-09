@@ -7,6 +7,7 @@ import {
 import { collection, setDoc, addDoc, doc } from 'firebase/firestore'
 import { Credentials } from "../../types/AuthTypes"
 import {db} from "../../Firebase"
+import { Navigate, useNavigate } from 'react-router-dom'
 
 
 const auth = getAuth()
@@ -24,23 +25,21 @@ export const signInUser = (creds: Credentials) => {
 }
 
 // SIGNOUT USER
-export const useSignOutUser = () => {
-  signOut(auth).then(() => {
-    console.log("Signed out!")
-  }).catch((error) => {
-    console.log(error)
-  });
+export const signOutUser = () => {
+  signOut(auth)
 }
 
 // SIGNUP USER
-export const useSignUpUser = (creds: Credentials) => {
-
+export const signUpUser = (creds: Credentials) => {
+  console.log(creds)
   createUserWithEmailAndPassword(auth,creds.email, creds.password).then((data)=>{
     console.log("New user created!",data)
-    addDoc(collection(db, "users",data.user.uid), 
+    setDoc(doc(db,"users",data.user.uid),
       {
-        email: creds.email
-      }   
+        email: creds.email,
+        username: creds.username,
+        blogs: []
+      }
     ).then((data)=>{
       console.log(data)
       

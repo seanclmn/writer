@@ -18,6 +18,7 @@ interface TexteditorProps {
 interface Inputs {
   title: string
   text: string
+  image: string
 }
 
 function Texteditor({blog}:TexteditorProps) {
@@ -28,12 +29,13 @@ function Texteditor({blog}:TexteditorProps) {
     {
       defaultValues: {
         title: "",
-        text: ""
+        text: "",
+        image: ""
       }
     }
   );
 
-  const submitBlog = (data:Inputs) => console.log({...blog,text:data.text,title:data.title})
+  const submitBlog = (data:Inputs) => postBlog({...blog,text:data.text,title:data.title,image:data.image})
   return (
     <Flex 
       direction="column"
@@ -45,7 +47,7 @@ function Texteditor({blog}:TexteditorProps) {
         width={"100%"}
         maxWidth={500}
         onClick={handleSubmit(submitBlog)}
-        >
+      >
         Post
       </Button>
       <Spacer/>
@@ -60,6 +62,20 @@ function Texteditor({blog}:TexteditorProps) {
           render={({ field: { onChange, value } })=>(
             <Input 
               placeholder="Title" 
+              value={value}
+              mb="10"
+              onChange={onChange}
+            />
+          )}
+        />
+
+        <FormLabel>Image</FormLabel>
+        <Controller
+          name="image"
+          control={control}
+          render={({ field: { onChange, value } })=>(
+            <Input 
+              placeholder="Image url" 
               value={value}
               mb="10"
               onChange={onChange}

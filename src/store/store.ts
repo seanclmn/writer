@@ -2,10 +2,10 @@ import create from 'zustand'
 import {User} from '../types/AuthTypes'
 import { BlogModel } from '../types/BlogTypes'
 
-export const InitUser = {
+export const userDefaultValues: User = {
   email: "",
   id: "",
-  blogs: []
+  username: ""
 }
 
 export interface AppState {
@@ -18,7 +18,7 @@ export interface AppState {
 }
 
 export const useStore = create<AppState>((set)=> ({
-  currentUser: InitUser,
+  currentUser: userDefaultValues,
   loggedIn: null,
   myBlogs: null,
   setCurrentUser: (newUser) => {

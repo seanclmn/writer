@@ -27,6 +27,23 @@ export const useGetUsers = () => {
   return {isLoading,error,data}
 }
 
+export const useGetUserById = (userid: string) => {
+
+  const fetchUser = async () =>{
+    const query =( await getDoc(doc(db,"users",userid)))
+    return query
+  }
+
+  const {isLoading,error,data}=useQuery(['user',userid], async ()=>{
+    const result = (await fetchUser()).data()
+    return result
+  },
+	{staleTime: Infinity}
+	)
+
+  return {isLoading,error,data}
+}
+
 export const useGetUserBlogs = (user:User) => {
 
   const fetchBlogs = async () =>{
@@ -36,7 +53,7 @@ export const useGetUserBlogs = (user:User) => {
     return queryresult as BlogModel[]
   }
 
-  const {isLoading,error,data}=useQuery(['userblogs'], async ()=>{
+  const {isLoading,error,data}=useQuery(['userblogs',user.id], async ()=>{
     const result = await fetchBlogs()
     return result
   },
