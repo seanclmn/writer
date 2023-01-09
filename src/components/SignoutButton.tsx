@@ -1,13 +1,12 @@
 import { Button } from "@chakra-ui/react";
 import { Outlet } from "react-router";
-import { useSignOutUser } from "../hooks/auth/AuthHooks";
-import { useGetBlogs, } from "../hooks/get/ReadUserDataHooks";
+import { signOutUser } from "../hooks/auth/AuthHooks";
 
 export const SignoutButton = () => {
 
   return(
     <>
-      <Button onClick={useSignOutUser}>
+      <Button onClick={signOutUser}>
         Sign out
       </Button>
       
