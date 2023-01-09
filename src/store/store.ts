@@ -5,7 +5,8 @@ import { BlogModel } from '../types/BlogTypes'
 export const userDefaultValues: User = {
   email: "",
   id: "",
-  username: ""
+  username: "",
+  blogs: []
 }
 
 export interface AppState {
