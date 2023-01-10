@@ -7,8 +7,6 @@ import {
 import { collection, setDoc, addDoc, doc } from 'firebase/firestore'
 import { Credentials } from "../../types/AuthTypes"
 import {db} from "../../Firebase"
-import { Navigate, useNavigate } from 'react-router-dom'
-
 
 const auth = getAuth()
 

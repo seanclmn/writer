@@ -12,6 +12,9 @@ export const Blog = (blogData:BlogModel) => {
 						src={blogData.image}
 						alt={blogData.image}
 						borderRadius='lg'
+						height={200}
+						width="100%"
+						objectFit="cover"
 					/>
 					<Stack mt='6' spacing='3'>
 						<Heading size='md'>{blogData.title} </Heading>

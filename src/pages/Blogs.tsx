@@ -2,6 +2,7 @@ import {Blog} from '../components/Blog'
 import { useGetUserBlogs, useGetUserBlogsById, useGetUserById } from '../hooks/get/ReadUserDataHooks'
 import {useParams} from 'react-router-dom'
 import { Box, SimpleGrid, Text } from '@chakra-ui/react'
+import { Bars } from 'react-loading-icons'
 
 
 export const MyBlogs = () => {
@@ -9,7 +10,7 @@ export const MyBlogs = () => {
 	const {isLoading: blogsLoading, error: blogsError, data: currentUserBlogs } = useGetUserBlogsById(userid as string)
 	const {isLoading:userLoading,error:userError,data: user} = useGetUserById(userid as string)
 
-	if(blogsLoading || userLoading) return(<p>Loading...</p>)
+	if(blogsLoading || userLoading) return(<Bars/>)
 	else if(blogsError || userError) return(<p>Error...</p>)
 	console.log(user)
 	return(

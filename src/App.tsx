@@ -13,6 +13,7 @@ import { Blogpost } from './pages/Blogpost'
 import { doc, getDoc } from 'firebase/firestore'
 import { User } from './types/AuthTypes'
 import { Profile } from './pages/Profile'
+import { TailSpin } from 'react-loading-icons'
 
 const App = () => {
   const queryClient = new QueryClient()
@@ -40,7 +41,11 @@ const App = () => {
   },[])
 
   if(loading) {
-    return(<p>loading...</p>)
+    return(
+      <div style={{height:"100vh",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        <TailSpin stroke="#024fcc"/>
+      </div>
+      )
   }
 
   return (
