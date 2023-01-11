@@ -1,3 +1,4 @@
+
 export interface BlogModel {
   title: string
   author: string
@@ -6,5 +7,6 @@ export interface BlogModel {
   id: string
   text: string
   userid: string
+  timeStamp: any
 }
 

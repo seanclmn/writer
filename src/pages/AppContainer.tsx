@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 export const AppContainer = () => (
     <>
       <Header/>
-      <div style={{"paddingTop": "50px"}}>
+      <div style={{paddingTop: "50px"}}>
         <Outlet/>
       </div>
     </>

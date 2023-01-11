@@ -8,7 +8,9 @@ import theme from './theme'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+    <ColorModeScript 
+      initialColorMode={theme.config.initialColorMode} 
+      />
 		<App />
   </React.StrictMode>
 )

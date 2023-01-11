@@ -15,6 +15,7 @@
   -webkit-text-size-adjust: 100%;
 } */
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;1,300;1,500&display=swap');
 html {
   height: 100vh;
 }

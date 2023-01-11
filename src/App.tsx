@@ -14,6 +14,7 @@ import { doc, getDoc } from 'firebase/firestore'
 import { User } from './types/AuthTypes'
 import { Profile } from './pages/Profile'
 import { TailSpin } from 'react-loading-icons'
+import { Home } from './pages/Home'
 
 const App = () => {
   const queryClient = new QueryClient()
@@ -56,6 +57,7 @@ const App = () => {
             <Route path="/signin" element={<SignInSignUpPage/>}/>
             <Route path="/signup" element={<SignInSignUpPage/>}/>
             <Route path="/" element={<AppContainer/> }>
+              <Route path="/" element={<Home/>}/> 
               <Route path="/editor/:editblogid" element={<PrivateRoute><EditorPage/></PrivateRoute>}/>
               <Route path="u/:userid" element={<MyBlogs/>}/>
               <Route path="b/:blogpostid" element={<Blogpost/>}/>

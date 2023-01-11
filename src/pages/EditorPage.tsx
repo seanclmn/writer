@@ -18,7 +18,8 @@ export const EditorPage = () => {
     image: "",
     id: "",
     text: "",
-    userid: storeState.currentUser.id
+    userid: storeState.currentUser.id,
+    timeStamp: ""
   }
   
   if(editblogid==="new"){
